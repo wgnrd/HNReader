@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Proptypes from 'prop-types';
 import './App.css';
 
 const DEFAULT_QUERY = 'redux';
@@ -98,8 +99,8 @@ class App extends Component {
             <p>Something went wrong.</p>
           </div>
         ) : (
-            <Table list={list} onDismiss={this.onDismiss} />
-          )}
+          <Table list={list} onDismiss={this.onDismiss} />
+        )}
         <div className="interactions">
           <Button
             onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}
@@ -157,6 +158,34 @@ const Button = ({ onClick, className, children }) => (
     {children}
   </button>
 );
+
+Button.propTypes = {
+  onClick: Proptypes.func.isRequired,
+  className: Proptypes.string,
+  children: Proptypes.node.isRequired
+};
+Button.defaultProps = {
+  className: ''
+};
+Table.propTypes = {
+  list: Proptypes.arrayOf(
+    Proptypes.shape({
+      objectID: Proptypes.string.isRequired,
+      author: Proptypes.string,
+      url: Proptypes.string,
+      num_comments: Proptypes.number,
+      points: Proptypes.number
+    })
+  ).isRequired,
+  onDismiss: Proptypes.func.isRequired
+};
+Search.propTypes = {
+  value: Proptypes.string,
+  onChange: Proptypes.func.isRequired,
+  onSubmit: Proptypes.func.isRequired,
+  children: Proptypes.node.isRequired
+};
+
 export default App;
 
 export { Button, Search, Table };

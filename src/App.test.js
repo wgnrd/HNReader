@@ -24,12 +24,21 @@ describe('App', () => {
 describe('Search', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Search>Search</Search>, div);
+    ReactDOM.render(
+      <Search onChange={() => {}} onSubmit={() => {}}>
+        Search
+      </Search>,
+      div
+    );
     ReactDOM.unmountComponentAtNode(div);
   });
 
   test('has a valid snapshot', () => {
-    const component = renderer.create(<Search>Search</Search>);
+    const component = renderer.create(
+      <Search onChange={() => {}} onSubmit={() => {}}>
+        Search
+      </Search>
+    );
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -38,17 +47,23 @@ describe('Search', () => {
 describe('Button', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Button>Button</Button>, div);
+    ReactDOM.render(<Button onClick={() => {}}>Button</Button>, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
   test('has a valid snapshot', () => {
-    const component = renderer.create(<Button>Button</Button>);
+    const component = renderer.create(
+      <Button onClick={() => {}}>Button</Button>
+    );
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
   it('shows a button', () => {
-    const element = shallow(<Button className={'inline'}>Button</Button>);
+    const element = shallow(
+      <Button className={'inline'} onClick={() => {}}>
+        Button
+      </Button>
+    );
     expect(element.find('.inline').type()).toBe('button');
   });
 });
@@ -68,18 +83,20 @@ describe('Table', () => {
   };
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Table {...props} />, div);
+    ReactDOM.render(<Table onDismiss={() => {}} {...props} />, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
   test('has a valid snapshot', () => {
-    const component = renderer.create(<Table {...props} />);
+    const component = renderer.create(
+      <Table onDismiss={() => {}} {...props} />
+    );
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
 
   it('shows two items in list', () => {
-    const element = shallow(<Table {...props} />);
+    const element = shallow(<Table onDismiss={() => {}} {...props} />);
     expect(element.find('.table-row').length).toBe(2);
   });
 });
