@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
+import Enzyme, { shallow } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import App, { Search, Button, Table } from './App';
 
+Enzyme.configure({ adapter: new Adapter() });
 
 describe('App', () => {
   it('renders without crashing', () => {
@@ -21,12 +24,12 @@ describe('App', () => {
 describe('Search', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Search >Search</Search>, div);
+    ReactDOM.render(<Search>Search</Search>, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
   test('has a valid snapshot', () => {
-    const component = renderer.create(<Search >Search</Search>);
+    const component = renderer.create(<Search>Search</Search>);
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -35,24 +38,34 @@ describe('Search', () => {
 describe('Button', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<Button >Button</Button>, div);
+    ReactDOM.render(<Button>Button</Button>, div);
     ReactDOM.unmountComponentAtNode(div);
   });
 
   test('has a valid snapshot', () => {
-    const component = renderer.create(<Button >Button</Button>);
+    const component = renderer.create(<Button>Button</Button>);
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
+  });
+  it('shows a button', () => {
+    const element = shallow(<Button className={'inline'}>Button</Button>);
+    expect(element.find('.inline').type()).toBe('button');
   });
 });
 
 describe('Table', () => {
   const props = {
     list: [
-      { title: '1', author: '1', num_comments: 1, objectID: 'foo', points: 222 },
+      {
+        title: '1',
+        author: '1',
+        num_comments: 1,
+        objectID: 'foo',
+        points: 222
+      },
       { title: '2', author: '2', num_comments: 1, objectID: 'bar', points: 223 }
     ]
-  }
+  };
   it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(<Table {...props} />, div);
@@ -63,5 +76,10 @@ describe('Table', () => {
     const component = renderer.create(<Table {...props} />);
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
+  });
+
+  it('shows two items in list', () => {
+    const element = shallow(<Table {...props} />);
+    expect(element.find('.table-row').length).toBe(2);
   });
 });
