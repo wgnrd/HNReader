@@ -173,22 +173,42 @@ const Table = ({ list, onDismiss, sortKey, isSortReverse, onSort }) => {
     <div className="table">
       <div className="table-header">
         <span style={largeColumn}>
-          <Sort sortKey={'TITLE'} onSort={onSort} activeSortKey={sortKey}>
+          <Sort
+            sortKey={'TITLE'}
+            onSort={onSort}
+            activeSortKey={sortKey}
+            isSortReverse={isSortReverse}
+          >
             Title
           </Sort>
         </span>
         <span style={midColumn}>
-          <Sort sortKey={'AUTHOR'} onSort={onSort} activeSortKey={sortKey}>
+          <Sort
+            sortKey={'AUTHOR'}
+            onSort={onSort}
+            activeSortKey={sortKey}
+            isSortReverse={isSortReverse}
+          >
             Author
           </Sort>
         </span>
         <span style={smallColumn}>
-          <Sort sortKey={'COMMENTS'} onSort={onSort} activeSortKey={sortKey}>
+          <Sort
+            sortKey={'COMMENTS'}
+            onSort={onSort}
+            activeSortKey={sortKey}
+            isSortReverse={isSortReverse}
+          >
             Comments
           </Sort>
         </span>
         <span style={smallColumn}>
-          <Sort sortKey={'POINTS'} onSort={onSort} activeSortKey={sortKey}>
+          <Sort
+            sortKey={'POINTS'}
+            onSort={onSort}
+            activeSortKey={sortKey}
+            isSortReverse={isSortReverse}
+          >
             Points
           </Sort>
         </span>
@@ -228,10 +248,21 @@ const Loading = () => (
   </div>
 );
 
-const Sort = ({ sortKey, activeSortKey, onSort, children }) => {
+const Sort = ({ sortKey, activeSortKey, onSort, isSortReverse, children }) => {
   const buttonClass = classNames('button-inline', {
     'button-active': activeSortKey === sortKey
   });
+  const IconClass = classNames('fas', {
+    'fa-sort-down': isSortReverse,
+    'fa-sort-up': !isSortReverse
+  });
+  children = buttonClass.includes('button-active') ? (
+    <span>
+      {children} <i className={IconClass} />
+    </span>
+  ) : (
+    children
+  );
   return (
     <Button onClick={() => onSort(sortKey)} className={buttonClass}>
       {children}
