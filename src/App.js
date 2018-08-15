@@ -21,7 +21,7 @@ const SORTS = {
 };
 
 const updateSearchTopStoriesState = (hits, page) => prevState => {
-  const { searchKey, results } = this.state;
+  const { searchKey, results } = prevState;
   const oldHits = results && results[searchKey] ? results[searchKey].hits : [];
   const updatedHits = [...oldHits, ...hits];
   return {
