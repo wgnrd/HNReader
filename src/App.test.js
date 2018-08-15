@@ -79,7 +79,9 @@ describe('Table', () => {
         points: 222
       },
       { title: '2', author: '2', num_comments: 1, objectID: 'bar', points: 223 }
-    ]
+    ],
+    sortKey: 'TITLE',
+    isSortReverse: false
   };
   it('renders without crashing', () => {
     const div = document.createElement('div');
