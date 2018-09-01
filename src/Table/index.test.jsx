@@ -36,6 +36,16 @@ describe('Table', () => {
     expect(tree).toMatchSnapshot();
   });
 
+  it('on Dismiss calls a method', () => {
+    const mockOnDismiss = jest.fn();
+    const element = shallow(<Table onDismiss={mockOnDismiss} {...props} />);
+
+    const button = element.find('.button-inline').first();
+    button.simulate('click');
+
+    expect(mockOnDismiss).toHaveBeenCalledTimes(1);
+  });
+
   it('shows two items in list', () => {
     const element = shallow(<Table onDismiss={() => {}} {...props} />);
     expect(element.find('.table-row').length).toBe(2);
