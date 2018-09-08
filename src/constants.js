@@ -1,6 +1,6 @@
 import { sortBy } from 'lodash';
 
-export const DEFAULT_QUERY = 'redux';
+export const DEFAULT_QUERY = 'foo';
 export const DEFAULT_HPP = '20';
 export const PATH_BASE = 'https://hn.algolia.com/api/v1';
 export const PATH_SEARCH = '/search';
@@ -12,5 +12,6 @@ export const SORTS = {
   TITLE: list => sortBy(list, 'title'),
   AUTHOR: list => sortBy(list, 'author'),
   COMMENTS: list => sortBy(list, 'num_comments').reverse(),
-  POINTS: list => sortBy(list, 'points').reverse()
+  POINTS: list => sortBy(list, 'points').reverse(),
+  DATE: list => sortBy(list, 'date_at').reverse()
 };

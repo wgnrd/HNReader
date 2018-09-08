@@ -6,10 +6,10 @@ import Proptypes from 'prop-types';
 import './index.css';
 
 const largeColumn = {
-  width: '40%'
+  width: '35%'
 };
 const midColumn = {
-  width: '30%'
+  width: '20%'
 };
 const smallColumn = {
   width: '10%'
@@ -78,6 +78,16 @@ class Table extends Component {
               Points
             </Sort>
           </span>
+          <span style={smallColumn}>
+            <Sort
+              sortKey={'DATE'}
+              onSort={this.onSort}
+              activeSortKey={sortKey}
+              isSortReverse={isSortReverse}
+            >
+              Date
+            </Sort>
+          </span>
           <span style={smallColumn}>Archive</span>
         </div>
         {reverseSortedList.map(item => (
@@ -88,6 +98,7 @@ class Table extends Component {
             <span style={midColumn}>{item.author}</span>
             <span style={smallColumn}>{item.num_comments}</span>
             <span style={smallColumn}>{item.points}</span>
+            <span style={smallColumn}>{item.created_at}</span>
             <span style={smallColumn}>
               <Button
                 onClick={() => onDismiss(item.objectID)}

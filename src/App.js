@@ -13,12 +13,16 @@ import './App.css';
 import Table from './Table';
 import Button from './Button';
 import Search from './Search';
+import moment from 'moment';
 
 // TODO : write test for updateSearchTopStories
 const updateSearchTopStoriesState = (hits, page) => prevState => {
   const { searchKey, results } = prevState;
   const oldHits = results && results[searchKey] ? results[searchKey].hits : [];
   const updatedHits = [...oldHits, ...hits];
+  updatedHits.map(
+    hit => (hit.created_at = moment(hit.created_at).format('LL'))
+  );
   return {
     results: { ...results, [searchKey]: { hits: updatedHits, page } },
     isLoading: false
