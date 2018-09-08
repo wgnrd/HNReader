@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App has a valid snapshot 1`] = `
+<div
+  className="page"
+>
+  <div
+    className="interactions"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <input
+        onChange={[Function]}
+        type="text"
+        value="foo"
+      />
+      <button
+        type="submit"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+  <div
+    className="table"
+  >
+    <div
+      className="table-header"
+    >
+      <span
+        style={
+          Object {
+            "width": "35%",
+          }
+        }
+      >
+        <button
+          className="button-inline"
+          onClick={[Function]}
+          type="button"
+        >
+          Title
+        </button>
+      </span>
+      <span
+        style={
+          Object {
+            "width": "20%",
+          }
+        }
+      >
+        <button
+          className="button-inline"
+          onClick={[Function]}
+          type="button"
+        >
+          Author
+        </button>
+      </span>
+      <span
+        style={
+          Object {
+            "width": "10%",
+          }
+        }
+      >
+        <button
+          className="button-inline"
+          onClick={[Function]}
+          type="button"
+        >
+          Comments
+        </button>
+      </span>
+      <span
+        style={
+          Object {
+            "width": "10%",
+          }
+        }
+      >
+        <button
+          className="button-inline"
+          onClick={[Function]}
+          type="button"
+        >
+          Points
+        </button>
+      </span>
+      <span
+        style={
+          Object {
+            "width": "10%",
+          }
+        }
+      >
+        <button
+          className="button-inline"
+          onClick={[Function]}
+          type="button"
+        >
+          Date
+        </button>
+      </span>
+      <span
+        style={
+          Object {
+            "width": "10%",
+          }
+        }
+      >
+        Archive
+      </span>
+    </div>
+  </div>
+  <div
+    className="interactions"
+  >
+    <div>
+      <i
+        className="fas fa-spinner fa-7x fa-pulse"
+      />
+    </div>
+  </div>
+</div>
+`;
