@@ -1,4 +1,11 @@
 language: node_js
 node_js:
-- '0.11'
-- '0.10'
+  - 'stable'
+cache:
+  directories:
+    - node_modules
+script:
+  - npm test
+  - npm run build
+on:
+  branch: master
