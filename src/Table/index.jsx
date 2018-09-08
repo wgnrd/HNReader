@@ -3,6 +3,7 @@ import { SORTS } from '../constants.js';
 import Button from '../Button';
 import classNames from 'classnames';
 import Proptypes from 'prop-types';
+import './index.css';
 
 const largeColumn = {
   width: '40%'
